@@ -12,8 +12,15 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof StoryBag> = (args) => <StoryBag {...args} />;
 
-export const Basic = Template.bind({});
+export const BasicColor = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Basic.args = {
+BasicColor.args = {
   texts: ['あああ', 'いいい', 'ううう', 'えええ', 'おおお']
+};
+
+export const Colored = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+Colored.args = {
+  texts: ['あああ', 'いいい', 'ううう', 'えええ', 'おおお'],
+  color: 'bg-blue-100'
 };

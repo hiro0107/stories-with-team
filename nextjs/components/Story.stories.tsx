@@ -7,13 +7,27 @@ import Story from './Story';
 export default {
   title: 'Story',
   component: Story,
+  argTypes: {
+    color: {
+      type: {
+        name: 'string'
+      }
+    }
+  }
 } as ComponentMeta<typeof Story>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof Story> = (args) => <Story {...args} />;
 
-export const Basic = Template.bind({});
+export const BasicColor = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Basic.args = {
+BasicColor.args = {
   text: 'あああ\nいいい\nううう\nえええ\nおおお',
+};
+
+export const Colored = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+Colored.args = {
+  text: 'あああ\nいいい\nううう\nえええ\nおおお',
+  color: 'bg-blue-100'
 };
