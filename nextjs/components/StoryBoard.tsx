@@ -15,23 +15,41 @@ type Board = {
   activities: Activity[]
 }[]
 
+export type ClickProps = {
+  type: 'user_story',
+  userStoryIndex: number
+} | {
+  type: 'activity',
+  userStoryIndex: number
+  activityIndex: number
+}
+
 type Props = {
   board: Board
+  onClick?: (clickProps: ClickProps) => void
 }
 
 
-export default function StoryBoard({ board }: Props) {
+export default function StoryBoard({ board, onClick }: Props) {
   return (<>
     <div className='inline-block'>
     <div className='flex gap-x-[24px]'>
       {
-        board.map(item => <Story text={item.user_story.text} color='bg-blue-100'/>)
+        board.map((item, userStoryIndex) =>
+          <Story
+            text={item.user_story.text} color='bg-blue-100'
+            onClick={() => onClick && onClick({ type: 'user_story', userStoryIndex })}
+          />
+        )
       }
     </div>
     <div className="border-[1px] my-[16px]"/>
     <div className='flex gap-x-[24px]'>
       {
-        board.map(item => <StoryBag texts={item.activities.map(activity => activity.text)}/>)
+        board.map((item, userStoryIndex) =>
+          <StoryBag
+            texts={item.activities.map(activity => activity.text)}
+            onClick={(activityIndex) => onClick && onClick({ type: 'activity', userStoryIndex, activityIndex })}/>)
       }
     </div>
     </div>
