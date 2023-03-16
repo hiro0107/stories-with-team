@@ -26,11 +26,12 @@ export type ClickProps = {
 
 type Props = {
   board: Board
+  highlightIndex?: ClickProps
   onClick?: (clickProps: ClickProps) => void
 }
 
 
-export default function StoryBoard({ board, onClick }: Props) {
+export default function StoryBoard({ board, highlightIndex, onClick }: Props) {
   return (<>
     <div className='inline-block'>
     <div className='flex gap-x-[24px]'>
@@ -38,6 +39,7 @@ export default function StoryBoard({ board, onClick }: Props) {
         board.map((item, userStoryIndex) =>
           <Story
             text={item.user_story.text} color='bg-blue-100'
+            highlight={highlightIndex?.type === 'user_story' && highlightIndex?.userStoryIndex === userStoryIndex}
             onClick={() => onClick && onClick({ type: 'user_story', userStoryIndex })}
           />
         )
@@ -49,6 +51,11 @@ export default function StoryBoard({ board, onClick }: Props) {
         board.map((item, userStoryIndex) =>
           <StoryBag
             texts={item.activities.map(activity => activity.text)}
+            highlightIndex={
+              highlightIndex?.type === 'activity' &&
+                highlightIndex?.userStoryIndex === userStoryIndex ?
+                  highlightIndex?.activityIndex : undefined
+            }
             onClick={(activityIndex) => onClick && onClick({ type: 'activity', userStoryIndex, activityIndex })}/>)
       }
     </div>

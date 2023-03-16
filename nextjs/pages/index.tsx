@@ -14,16 +14,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className="mx-[32px] my-[16px]">
         <App />
-        <div>
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and&nbsp;API.
-          </p>
-        </div>
       </main>
     </>
   )

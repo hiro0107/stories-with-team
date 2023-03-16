@@ -31,3 +31,11 @@ Colored.args = {
   text: 'あああ\nいいい\nううう\nえええ\nおおお',
   color: 'bg-blue-100'
 };
+
+export const Highlighted = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+Highlighted.args = {
+  text: 'あああ\nいいい\nううう\nえええ\nおおお',
+  color: 'bg-blue-100',
+  highlight: true
+};
